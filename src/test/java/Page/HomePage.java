@@ -9,6 +9,9 @@ public class HomePage {
 
     private WebDriver driver;
 
+    By itemQuantityHomePage = By.xpath("(.//*[@class='cart-info']//td/..//strong)[1]");
+    By cartIconClickable = By.xpath("//a[@class='cart-icon']");
+    By checkOutButton = By.xpath("//button[contains(text(),'PROCEED TO CHECKOUT')]");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -73,10 +76,19 @@ public class HomePage {
 
     public HomePage configureOrder(OrderConfiguration homePageOrderConfig){
         increaseQuantity(homePageOrderConfig.getVegName(),homePageOrderConfig.getVegQty());
-        getQuantity(homePageOrderConfig.getVegName());
+        //getQuantity(homePageOrderConfig.getVegName());
         calculateItemizedPrice(homePageOrderConfig.getVegName(),homePageOrderConfig.getVegQty());
         addToCartButton(homePageOrderConfig.getVegName());
 
         return this;
+    }
+
+    //Click cart icon- To be enabled when there are item in cart
+    public void proceedToCheckOut() {
+        String qty = driver.findElement(itemQuantityHomePage).getText();
+        if (Integer.parseInt(qty) > 0) {
+            driver.findElement(cartIconClickable).click();
+            driver.findElement(checkOutButton).click();
+        }
     }
 }
