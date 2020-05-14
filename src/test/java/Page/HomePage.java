@@ -1,17 +1,16 @@
 package Page;
 
-import Configs.OrderConfig_V1;
-import io.cucumber.java.hu.Ha;
+import Configs.OrderConfiguration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePage_V1 {
+public class HomePage {
 
     private WebDriver driver;
 
 
-    public HomePage_V1(WebDriver driver) {
+    public HomePage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -72,7 +71,7 @@ public class HomePage_V1 {
     }
 
 
-    public HomePage_V1 configureOrder(OrderConfig_V1 homePageOrderConfig){
+    public HomePage configureOrder(OrderConfiguration homePageOrderConfig){
         increaseQuantity(homePageOrderConfig.getVegName(),homePageOrderConfig.getVegQty());
         getQuantity(homePageOrderConfig.getVegName());
         calculateItemizedPrice(homePageOrderConfig.getVegName(),homePageOrderConfig.getVegQty());

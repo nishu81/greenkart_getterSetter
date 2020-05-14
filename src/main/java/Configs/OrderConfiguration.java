@@ -7,7 +7,7 @@ import lombok.Value;
 @Getter
 @Value
 @Builder
-public class OrderConfig_V1 {
+public class OrderConfiguration {
 
     private String vegName;
     private int vegQty;
